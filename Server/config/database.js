@@ -1,0 +1,17 @@
+const mongoose = require("mongoose");
+
+const connectDataBase = () => {
+    mongoose.connect(process.env.DB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then((data) => {
+        console.log(`MongoDB connected: ${data.connection.host}`);
+    })
+    .catch((error) => {
+        console.error(`Error connecting to MongoDB: ${error.message}`);
+        process.exit(1); // Exit the process with failure
+    });
+};
+
+module.exports = connectDataBase;
